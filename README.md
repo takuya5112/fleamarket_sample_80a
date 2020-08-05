@@ -125,34 +125,6 @@ Things you may want to cover:
 ### Association
 - has_many :items
 
-## item_conditions table (activehash)
-|Column|Type|Options|
-|------|----|-------|
-|condition|string|null: false|
-### Association
-- has_many :items
-
-## postage_burdens table (activehash)
-|Column|Type|Options|
-|------|----|-------|
-|burden|string|null: false|
-### Association
-- has_many :items
-
-## item_sizes table (activehash)
-|Column|Type|Options|
-|------|----|-------|
-|size|string|null: false|
-### Association
-- has_many :items
-
-## postage_days table (activehash)
-|Column|Type|Options|
-|------|----|-------|
-|day|string|null: false|
-### Association
-- has_many :items
-
 ## item_images table
 |Column|Type|Options|
 |------|----|-------|
