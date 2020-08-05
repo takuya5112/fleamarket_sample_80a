@@ -34,9 +34,9 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_many :comments
-- has_one :credit_cards
-- has_one :user_profiles
-- has_one :user_addresses
+- has_one :credit_card
+- has_one :user_profile
+- has_one :user_address
 
 ## credit_cards table
 |Column|Type|Options|
@@ -47,7 +47,7 @@ Things you may want to cover:
 |expiration_month|integer|null: false|
 |security_code|integer|null: false|
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 ## user_profiles table
 |Column|Type|Options|
@@ -63,7 +63,7 @@ Things you may want to cover:
 |introduction|text||
 |image|string||
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 ## user_addresses table
 |Column|Type|Options|
@@ -80,7 +80,7 @@ Things you may want to cover:
 |building_name|string||
 |phone_number|integer|null: false, unique: true|
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 ## items table
 |Column|Type|Options|
@@ -95,7 +95,6 @@ Things you may want to cover:
 |prefecture_code|integer|null: false, jp_prefecture|
 |size_id|integer|null: false, foreign_key: true|
 |postage_days_id|integer|null: false, foreign_key: true|
-|thumb_image_id|integer|null: false, foreign_key: true|
 |seller_id|integer|null: false, foreign_key: true|
 |buyer_id|integer|foreign_key: true|
 |deal_done_date|datetime||
@@ -160,7 +159,7 @@ Things you may want to cover:
 |item_id|integer|null: false, foreign_key: true|
 |image|string|null: false|
 ### Association
-- belongs_to :items
+- belongs_to :item
 
 ## comments table
 |Column|Type|Options|
@@ -169,6 +168,6 @@ Things you may want to cover:
 |item_id|integer|null: false, foreign_key: true|
 |comment|text|null: false|
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
