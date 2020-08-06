@@ -77,3 +77,4 @@ group :production do
 end
 
 gem 'ancestry'
+gem 'active_hash'
