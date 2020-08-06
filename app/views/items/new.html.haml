@@ -1,0 +1,66 @@
+= render "layouts/header"
+
+.items_new_page
+  .items_register_form
+    = form_with local: true do |form|
+      .form_section.image_register
+        = form.label '出品画像'
+        %span.form-group__require 必須
+        .image-attend クリックで最大10枚まで貼れます。
+        .clearfix
+          %ul#previews
+            %li.input
+
+      .form_section.item_register
+        = form.label '商品名'
+        %span.form-group__require 必須
+        = form.text_field :name, placeholder:"40文字まで", class:"item_name_form"
+        = form.label "商品の説明"
+        %span.form-group__require 必須
+        = form.text_area :introduction, placeholder: "商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2020年頃に10万円で購入した財布です。傷はありません。\n          ", value: "", class: "item_info_form"
+        .status_register
+          .status_register__status_category_group
+            .status_register__status_category_group__category
+              .status_register__status_category_group__category__register_title
+                = form.label 'カテゴリー'
+                %span.form-group__require 必須
+              .status_register__status_category_group__category__choose
+                = form.text_field :category_id, placeholder: "- - -"
+        = form.label "ブランド"
+        = form.text_field :brand , placeholder: "例）シャネル"
+        = form.label "商品の状態"
+        %span.form-group__require 必須
+        = form.text_field :item_condition, placeholder: "選択してください"
+      .form_section.send_register
+        = form.label '配送料の負担'
+        %span.form-group__require 必須
+        = form.text_field :postage_payer, placeholder: "選択してください"
+        = form.label '配送元の地域'
+        %span.form-group__require 必須
+        = form.text_field :prefecture_code, placeholder: "選択してください"
+        = form.label '発送までの日数'
+        %span.form-group__require 必須
+        = form.text_field :preparation_day, placeholder: "選択してください"
+      .form_section.value_register
+        = form.label '販売価格'
+        %span.form-group__require 必須
+        .value_register_form
+          ¥
+          = form.number_field :price, class:"value_form"
+
+        .product_price-fee
+          販売手数料(10%)
+          .right_bar
+        
+        .product_profit
+          販売利益
+          = form.number_field :rieki, style: "display: none", id: "price"
+          .right_bar_2
+
+      .form_section.register_btns
+        = form.submit "出品する",class:"exhibition-btn"
+      .attentions
+        禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
+
+
+= render "layouts/footer"
