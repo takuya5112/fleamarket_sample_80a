@@ -75,3 +75,5 @@ gem 'jquery-rails'
 group :production do
   gem 'unicorn'
 end
+
+gem 'ancestry'
