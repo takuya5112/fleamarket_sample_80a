@@ -1,0 +1,273 @@
+$main-color: #f8f8f8;
+$sub-color: #3CCACE;
+$table-border: solid 1px #dedede;
+$btn-color: red;
+
+
+.main-contents {
+  background-color: $main-color;
+  padding: 40px 0;
+  .show-main {
+    width: 700px;
+    margin: 0 auto;
+    &__item-box {
+      background-color: white;
+    
+      &__item-name {
+        height: 50px;
+        width: 100%;
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 50px;
+        text-align: center;
+        position: relative;
+      }
+
+      &__item-image {
+        height: 100%;
+        width: 500px;
+        text-align: center;
+        margin: auto;
+
+        &__main-img {
+          width: 400px;
+          margin: 0 auto;
+          position: relative;
+
+          .top-img {
+            &__sold{
+              width: 0;
+              height: 0;
+              border-width: 140px 140px 0 0;
+              border-color: #ea352d transparent transparent transparent;
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: 1;
+              border-style: solid;
+              &__inner{
+                top: -110px;
+                font-size: 30px;
+                position: absolute;
+                left: 0;
+                z-index: 2;
+                color: #fff;
+                transform: rotate(-45deg);
+                letter-spacing: 2px;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+
+      &__item-price {
+        text-align: center;
+        p {
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+        &__item-price-btn {
+          margin: 30px 0;
+          a {
+            display: inline-block;
+            text-align: center;
+            width: 70%;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            background-color: $sub-color;
+            text-decoration: none;
+          }
+        }
+
+        #purchase-btn {
+          width: 160px;
+          height: 40px;
+          background-color:#ffb340;
+          border-radius: 5px;
+          box-shadow: 1px  #1a6ea1;
+          color:white;
+        }
+      }
+
+      &__item-detail {
+        height: 100％;
+        width: 600px;
+        font-size: 18px;
+        padding: 15px 0px 10px ;
+        margin: 0 auto;
+      }
+      &__item-table {
+        height: 400px;
+        width: 600px;
+        font-size: 13px;
+        margin: 0 auto;
+        th {
+          background-color: #eee;
+          width: 150px;
+          border: $table-border;
+          text-align: center;
+        }
+        td {
+          width: 450px;
+          border: $table-border;
+          padding-left: 20px;
+        }
+        .one {
+          height: 50px;
+        }
+        .two {
+          height: 80px;
+        }
+        .tree {
+          height: 35px;
+        }
+      }
+
+      &__option-area {
+        height: 80px;
+        width: 600px;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        &__like-btn {
+          height: 20px;
+          width: 130px;
+          .like-btn {
+            width: 100%;
+            font-size: 15px;
+            margin-right: auto;
+            padding: 6px 10px;
+            border-radius: 40px;
+            color: $sub-color;
+            border: 1px solid #FFB340;
+            cursor: pointer;
+          }
+
+        }
+        &__seller-area {
+          height: 50px;
+          width: 200px;
+          display: block;
+          text-align: center;
+          margin-top: 5px;
+            .edit__btn {
+              background-color:$btn-color;
+              border: solid 1px $btn-color;
+              height: 40px;
+              width: 100px;
+              color: white;
+              text-decoration: none;
+              padding: 10px;
+            }
+            .delete__btn {
+              background-color:$btn-color;
+              border: solid 1px $btn-color;
+              height: 40px;
+              width: 100px;
+              color: white;
+              text-decoration: none;
+              padding: 10px;
+              margin-left: 10px;
+            }
+        }
+
+        .optional {
+          font-size: 13px;
+          padding: 6px 10px;
+          display: inline-block;
+          border-radius: 4px;
+          color: #333;
+          border: 1px solid #333;
+          text-decoration: none;
+        }
+      }
+
+      &__comment-box {
+        background-color: white;
+        height: 280px;
+        width: 100%;
+    
+        &__new-comment {
+          height: 100px;
+          width: 660px;
+          padding: 20px 20px 10px 20px;
+          .new-comment {
+            height: 100%;
+            width: 100%;
+            border: solid 1px rgb(46, 44, 44);
+            text-align: start;
+            overflow-wrap: break-word;
+          }
+        }
+
+        &__explanation {
+          background-color: $main-color;
+          height: 50px;
+          width: 650px;
+          font-size: 14px;
+          padding-left: 10px;
+          margin: 0 auto;
+          line-height: 25px;
+        }
+
+        &__comment-btn {
+          text-align: center;
+          line-height: 48px;
+          padding-top: 30px;
+          .comment-btn {
+            height: 50px;
+            background: $sub-color;
+            border: 1px solid $sub-color;
+            color: white;
+            width: 60%;
+            font-size: 18px;
+            border-radius: 100px;
+          }
+        }
+      }
+    }
+
+    .show-main__item-box__coment-box__comments {
+      width: 600px;
+      height:  350px;
+      padding: 40px;
+      display: inline-block;
+      
+      h1{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      p.name{
+        font-size: 18px;
+        color:darkgray;
+        float:left;
+        margin-right: 10px;
+      }
+
+      p.comment{
+        font-size: 18px;
+        color:black;
+        margin-left: 40px;
+        margin-bottom: 20px;
+       }
+      .comment-delete-btn {
+        font-size: 12px;
+        color: white;
+        padding: 3px;
+        background-color:rgb(0, 181, 205);
+        border: solid 1px rgb(0, 181, 205);
+        text-decoration: none;
+        border-radius: 10px;
+        float: right;
+      }
+    }  
+  }
+}
