@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_092801) do
+ActiveRecord::Schema.define(version: 2020_08_06_115619) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -58,24 +58,24 @@ ActiveRecord::Schema.define(version: 2020_08_06_092801) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.text "introduction", null: false
-    t.integer "price", null: false
-    t.bigint "category_id", null: false
+    t.text "introduction"
+    t.integer "price"
+    t.bigint "category_id"
     t.bigint "brand_id"
     t.integer "condition_id", null: false
-    t.integer "postage_burden_id", null: false
-    t.integer "prefecture_code", null: false
-    t.integer "size_id", null: false
-    t.integer "postage_days_id", null: false
-    t.bigint "seller", null: false
-    t.bigint "buyer"
+    t.integer "postage_burden_id"
+    t.integer "prefecture_code"
+    t.integer "size_id"
+    t.integer "postage_days_id"
     t.datetime "deal_done_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.bigint "seller_id", null: false
+    t.bigint "buyer_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
-    t.index ["buyer"], name: "index_items_on_buyer"
+    t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["seller"], name: "index_items_on_seller"
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
   create_table "user_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
