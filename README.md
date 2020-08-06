@@ -32,8 +32,9 @@ Things you may want to cover:
 |email|string|null: false, unique: true|
 |password|string|null: false, minimum: 7|
 ### Association
-- has_many :items
-- has_many :comments
+- has_many :seller_items, foreign_key: "seller_id", class_name: "Item"
+- has_many :buyer_items, foreign_key: "buyer_id", class_name: "Item"
+- has_many :comments, dependent: :destroy
 - has_one :credit_card
 - has_one :user_profile
 - has_one :user_address
@@ -99,14 +100,14 @@ Things you may want to cover:
 |buyer_id|integer|foreign_key: true|
 |deal_done_date|datetime||
 ### Association
-- has_many :comments, dependent: destroy
-- has_many :item_images, dependent: destroy
+- has_many :comments, dependent: :destroy
+- has_many :item_images, dependent: :destroy
 - belongs_to :category
 - belongs_to :brand
-- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :condition, class_name: "ItemCondition"
 - belongs_to_active_hash :postage_burden
-- belongs_to_active_hash :item_size
-- belongs_to_active_hash :postage_day
+- belongs_to_active_hash :size, class_name: "ItemSize"
+- belongs_to_active_hash :postage_days
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User"
 
