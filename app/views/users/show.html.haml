@@ -1,0 +1,50 @@
+= render partial: 'layouts/header'
+.MyPage
+  .MyPage__left
+    %h2 マイページ
+    %ul.MyPage__list
+      %li
+        %p 出品する
+        = icon('fas', 'angle-right', class: "angle-icon")
+      %li
+        %p 出品した商品
+        = icon('fas', 'angle-right', class: "angle-icon")
+
+      %li
+        %p 購入した商品
+        = icon('fas', 'angle-right', class: "angle-icon")
+      %li
+        %p お問い合わせ
+        = icon('fas', 'angle-right', class: "angle-icon")
+      %li
+        %p お知らせ
+        = icon('fas', 'angle-right', class: "angle-icon")
+    %h2 設定
+    %ul.MyPage__setting
+      %li
+        %p クレジットカード登録
+        = icon('fas', 'angle-right', class: "angle-icon")
+      %li
+        %p ログアウト
+        = icon('fas', 'angle-right', class: "angle-icon")
+  .MyPage__right
+    .MyPage__todo
+      .User__info
+        = image_tag('member_photo_noimage_thumb.png',class: 'User__info__image')
+        %p ユーザー名
+      .Todo__list
+        %h1 やることリスト
+        %ul
+          %li 
+            %p ○○日までに、発送
+            = icon('fas', 'angle-right', class: "angle-icon")
+          %li 
+            %p ○○日までに、発送
+            = icon('fas', 'angle-right', class: "angle-icon")
+    .MyPage__bought
+      %h1 購入したもの
+      %h2 取引中
+      %ul
+        %li 
+          %p レディース、Tシャツ (S)
+          = icon('fas', 'angle-right', class: "angle-icon")
