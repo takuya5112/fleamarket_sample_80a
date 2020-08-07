@@ -6,10 +6,15 @@
 @import "top-page";
 @import "display";
 @import "appBanner";
-@import "new";
+@import "items/new";
 @import "footer";
 @import "show";
 @import "modules/myPage";
 @import "modules/logout";
 @import "modules/creditNew";
+
+
+@import "config/variables";
+@import "items/buyers";
+
 

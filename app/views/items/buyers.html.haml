@@ -1,0 +1,68 @@
+.header
+  .header__logo
+    =image_tag("logo.png", size: "220x70")
+    
+.buy-content
+  .buy-content__main
+    = form_with method: :post do |f|
+      .buy-content__main__title
+        購入内容の確認
+
+      .buy-content__main__item
+        .buy-image
+          = image_tag 'https://www.pakutaso.com/shared/img/thumb/isojinTSURUTAMA0252_TP_V.jpg', size: '200x150', class: 'buy-image__detail'
+        .buy-details
+          .buy-details__item-name
+            %span 商品名:　イソジン
+            
+            %p.buy-price
+              100円
+              %span.shopping-free (税込)送料込み
+
+      .buy-content__main__price-table
+        .buy-content__main__price-table__left
+          お支払い金額
+        .buy-content__main__price-table__right
+          100円
+          %span.shopping-free (税込)送料込み
+          
+      .buy-content__main__user-info
+        .buy-content__main__user-info__inner
+          %h3 お支払い方法
+          .inner-credit
+            .inner-credit__brand
+              %figure
+                
+            .inner-credit__number
+              = "**** **** **** " 
+            .inner-credit__expiration
+              .inner-credit__expiration__title
+                有効期限
+              .inner-credit__expiration__date
+                =  " / " 
+
+        .buy-content__main__user-info__adress
+          .buy-content__main__user-info__adress__inner
+            %h3 配送先
+          .adress-info
+            住所
+            %br
+            000-0000
+            %br
+            東京都〇〇区〇〇
+            %br
+            1-2-3
+            %br
+            テックキャンプ荘
+            
+            
+            .adress-info__name
+              氏名
+              テック
+              様
+              
+      .buy-content__main__submit
+        = f.submit '購入する', class: 'buy-button'
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
