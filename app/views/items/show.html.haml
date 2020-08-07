@@ -38,14 +38,9 @@
           %tr.two
             %th カテゴリー
             %td
-              メンズ
-              %br
-              >
-              トップス
-              %br
-              >>
-              ポロシャツ
-              
+              %p= @item.category.root.name
+              %p= "> #{@item.category.parent.name}"
+              %p= ">> #{@item.category.name}"
           %tr.tree
             %th ブランド
             %td 
