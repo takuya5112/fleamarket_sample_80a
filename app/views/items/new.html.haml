@@ -29,11 +29,11 @@
                 .status_register__status_category_group__category__choose__added#children_wrapper
                   .status_register__status_category_group__category__choose1
                     = icon('fas', 'chevron-down', class: "status_register__status_category_group__category__choose--arrow-down")
-                    -# = form.select
+                    = select_tag "dummy"
                 .status_register__status_category_group__category__choose__added#grandchildren_wrapper
                   .status_register__status_category_group__category__choose2
                     = icon('fas', 'chevron-down', class: "status_register__status_category_group__category__choose--arrow-down")
-                    -# = form.select
+                    = select_tag "dummy"
         = form.label "ブランド"
         = form.text_field :brand , placeholder: "例）シャネル"
         = form.label "商品の状態"
