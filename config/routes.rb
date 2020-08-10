@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :user_addresses
   resources :user_profiles
   resources :credit_cards
+  resources :categories, only: :index, defaults: { format: 'json' }
 end
