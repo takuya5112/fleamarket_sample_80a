@@ -17,4 +17,7 @@
 @import "config/variables";
 @import "items/buyers";
 
-
+// ログイン、新規登録画面
+@import "view/index";
+@import "view/new";
+@import "view/edit";
