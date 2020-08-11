@@ -109,7 +109,7 @@
           %h3.title
             商品一覧
       .productLists
-        - @item.each do |item|
+        - @items.each do |item|
           .productList
             = link_to item_path(item) do
               %figure.productList--img
