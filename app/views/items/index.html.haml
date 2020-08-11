@@ -107,24 +107,28 @@
       .productHead
         = link_to '#' do
           %h3.title
-            新規投稿商品
+            商品一覧
       .productLists
-        .productList
-          = link_to '#' do
-            %figure.productList--img
-              = image_tag 'https://www.pakutaso.com/shared/img/thumb/isojinTSURUTAMA0252_TP_V.jpg', class: 'image__category'
+        - @items.each do |item|
+          .productList
+            = link_to item_path(item) do
+              %figure.productList--img
+                = image_tag "#{item.item_images[0].image}", class: 'image__category'
+                  -if item.buyer_id.present?
+                  .productList--img__items-sold
+                    .productList--img__items-sold__inner 
+                      SOLD
             .productList--body
               %h3.product--name
-                イソジン
+                = item.name
               .details
                 %ul
                   %li
-                    100円
+                    = "#{item.price}円" 
                   %li
                     %i.fa.fa-star.likeIcon
                 %p
-                  (税込み)
-
+                  (税込)
 
 
   %section.pickupContainer
