@@ -38,13 +38,10 @@ ActiveRecord::Schema.define(version: 2020_08_06_092801) do
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "card_number", null: false
-    t.integer "expiration_year", null: false
-    t.integer "expiration_month", null: false
-    t.integer "security_code", null: false
+    t.string "payjp_customer_id", null: false
+    t.string "payjp_card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_number"], name: "index_credit_cards_on_card_number", unique: true
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
