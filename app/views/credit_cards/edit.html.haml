@@ -10,7 +10,6 @@
       %p= "カードブランド名: #{@card.brand}"
       %p= "カード番号の下四桁: #{@card.last4}"
       %p= "有効期限: #{@card.exp_month}月 #{@card.exp_year}年"
-      %p= "カード番号の下四桁: #{@card.last4}"
       %p= "--"
     .CreditMain__contents__card-remove
       = link_to credit_card_path, method: :delete do
