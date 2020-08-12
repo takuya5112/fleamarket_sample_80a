@@ -4,63 +4,73 @@
   .show-main
     .show-main__item-box
       .show-main__item-box__item-name
-        イソジン
+        = @item.name
       .show-main__item-box__item-image
         .show-main__item-box__item-image__main-img
-          = image_tag "https://www.pakutaso.com/shared/img/thumb/isojinTSURUTAMA0252_TP_V.jpg", size:"400x350", class: "top-img"
-          .top-img__sold
-            .top-img__sold__inner 
-              SOLD
+          - @item.item_images.first(1).each do |img|
+            = image_tag "#{img.image}", size:"400x350", class: "top-img"
+            -if @item.buyer_id.present? 
+              .top-img__sold
+                .top-img__sold__inner 
+                  SOLD
+
         .show-main__item-box__item-image__sub-img
-          = image_tag "https://www.pakutaso.com/shared/img/thumb/isojinTSURUTAMA0252_TP_V.jpg", size:"140x100"
+          - @item.item_images.first(10).each do |img|
+            = image_tag "#{img.image}", size:"140x100"
+
 
       .show-main__item-box__item-price
-        100円
+        %p
+          = "#{@item.price}円" 
         .show-main__item-box__item-price__item-price-detail
           (税込)送料込み
         .show-main__item-box__item-price__item-price-btn
-          = link_to root_path do
-            売り切れました
-          = link_to "#" do
-            商品購入
-          = link_to "#" do
-            ログインがまだな方はこちらからお願いします
+          - if @item.buyer_id.present?
+            = link_to root_path do
+              売り切れました
+          - elsif user_signed_in?
+            - unless current_user.id == @item.seller_id
+              = link_to "#" do
+                商品購入
+          - else
+            = link_to  new_user_session_path do
+              ログインがまだな方はこちらからお願いします
 
         .show-main__item-box__item-detail
-          テスト
+          = @item.introduction
 
       .show-main__item-box__item-table
         %table
           %tr.one
             %th 出品者
             %td
-              テスト
+              = @item.name
           %tr.two
             %th カテゴリー
             %td
               %p= @item.category.root.name
-              %p= "> #{@item.category.parent.name}"
+              -# %p= "> #{@item.category.parent.name}"
               %p= ">> #{@item.category.name}"
           %tr.tree
             %th ブランド
             %td 
-              
+              = @item.brand_id
           %tr.one
             %th 商品の状態
             %td 
-              新品、未使用
+              = @item.condition_id
           %tr.one
             %th 配送料の負担
             %td
-              送料込み（出品者負担）
+              = @item.postage_burden_id
           %tr.one
             %th 発送元の地域
             %td 
-              長野県
+              = @item.prefecture_code
           %tr.one
             %th 発送日の目安
             %td 
-              1日から2日で発送
+              = @item.postage_days_id
 
       .show-main__item-box__option-area
         .show-main__item-box__option-area__like-btn
@@ -69,10 +79,11 @@
             お気に入り
 
         .show-main__item-box__option-area__seller-area
-          = link_to "#", class: "edit__btn" do
-            編集
-          = link_to "#", method: :delete, class: "delete__btn" do
-            削除
+          - if user_signed_in? && current_user.id == @item.seller_id
+            = link_to "#", class: "edit__btn" do
+              編集
+            = link_to "#", method: :delete, class: "delete__btn" do
+              削除
 
         .show-main__item-box__option-area__optional
           =link_to '#', class:"optional" do
