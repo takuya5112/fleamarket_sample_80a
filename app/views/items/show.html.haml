@@ -49,28 +49,28 @@
             %th カテゴリー
             %td
               %p= @item.category.root.name
-              %p= "> #{@item.category.parent.name}"
+              -# %p= "> #{@item.category.parent.name}"
               %p= ">> #{@item.category.name}"
           %tr.tree
             %th ブランド
             %td 
-              = @item.brand_id
+              = @item.brand.name
           %tr.one
             %th 商品の状態
             %td 
-              = @item.condition_id
+              = @item.condition.condition
           %tr.one
             %th 配送料の負担
             %td
-              = @item.postage_burden_id
+              = @item.postage_burden.burden
           %tr.one
             %th 発送元の地域
             %td 
-              = @item.prefecture_code
+              仮）北海道
           %tr.one
             %th 発送日の目安
             %td 
-              = @item.postage_days_id
+              = @item.postage_days.day
 
       .show-main__item-box__option-area
         .show-main__item-box__option-area__like-btn
