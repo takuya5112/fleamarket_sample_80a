@@ -7,37 +7,40 @@
     %h1<>クレジットカード入力画面
   .CreditMain__contents
     .Credit__form
-      = form_with url: credit_cards_path, method: :post, local: true do |f|
-        .Credit__number
-          %label<>カード番号
-          %span<>必須
-          %br
-          = f.text_field :card_number,class: "Credit__form__input", placeholder: "半角数字のみ", maxlength: "16"
-          %ul.Credit__list
-            %li= image_tag('Visa.svg')
-            %li= image_tag('Master.png')
-            %li= image_tag('discover.png')
-            %li= image_tag('JCB.png')
-            %li= image_tag('amex.svg')
-            %li= image_tag('Diners.png')
-        .Credit__exp
-          %label<>有効期限
-          %span<>必須
-          %br
-          = f.select :exp_month, [["--", ""],["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]], id: "exp_mouth", class: 'input-expire'
-          %label<>月
-          = f.select :exp_year, [["--", ""],["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]], id: "exp_year", class: 'input-expire'
-          %label<>年
-        .Security__code
-          %label<>セキュリティコード
-          %span<>必須
-          =f.text_field :security_code,class: "Credit__form__input", placeholder: "カード背面3~4桁の番号", maxlength: "4"
-          .Security__code__question 
-            %p.question ?
-            %p<>カードの背面の番号とは？
-        .Credit__token
-          = submit_tag "登録する", class: "Register__btn"
+      %form{action: "/credit_cards", method: "post"}
+        %script{src: "https://checkout.pay.jp/", class: "payjp-button", "data-key": "pk_test_49da7275075f7695107aa88e", "data-text": "カード情報を入力する", "data-submit-text": "カード情報を入力する"}
 
-%form{action: "/credit_cards", method: "post"}
-  %script{src: "https://checkout.pay.jp/", class: "payjp-button", "data-key": "pk_test_49da7275075f7695107aa88e"}
 
+-# どちらのページを使うか悩み中。そのため、コードは削除せずにコメントアウトとしている。
+-# 後に方針を決定し、どちらかを削除する。
+
+      -# = form_with url: credit_cards_path, method: :post, local: true do |f|
+      -#   .Credit__number
+      -#     %label<>カード番号
+      -#     %span<>必須
+      -#     %br
+      -#     = f.text_field :card_number,class: "Credit__form__input", placeholder: "半角数字のみ", maxlength: "16"
+      -#     %ul.Credit__list
+      -#       %li= image_tag('Visa.svg')
+      -#       %li= image_tag('Master.png')
+      -#       %li= image_tag('discover.png')
+      -#       %li= image_tag('JCB.png')
+      -#       %li= image_tag('amex.svg')
+      -#       %li= image_tag('Diners.png')
+      -#   .Credit__exp
+      -#     %label<>有効期限
+      -#     %span<>必須
+      -#     %br
+      -#     = f.select :exp_month, [["--", ""],["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]], id: "exp_mouth", class: 'input-expire'
+      -#     %label<>月
+      -#     = f.select :exp_year, [["--", ""],["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]], id: "exp_year", class: 'input-expire'
+      -#     %label<>年
+      -#   .Security__code
+      -#     %label<>セキュリティコード
+      -#     %span<>必須
+      -#     =f.text_field :security_code,class: "Credit__form__input", placeholder: "カード背面3~4桁の番号", maxlength: "4"
+      -#     .Security__code__question 
+      -#       %p.question ?
+      -#       %p<>カードの背面の番号とは？
+      -#   .Credit__token
+      -#     = submit_tag "登録する", class: "Register__btn"
