@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items do
     resources :comments
+    collection do
+      get "buyers"
+    end
   end
   resources :users
   resources :user_addresses

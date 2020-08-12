@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_170248) do
+ActiveRecord::Schema.define(version: 2020_08_06_092801) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -38,13 +38,10 @@ ActiveRecord::Schema.define(version: 2020_08_07_170248) do
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "card_number", null: false
-    t.integer "expiration_year", null: false
-    t.integer "expiration_month", null: false
-    t.integer "security_code", null: false
+    t.string "payjp_customer_id", null: false
+    t.string "payjp_card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_number"], name: "index_credit_cards_on_card_number", unique: true
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
@@ -67,11 +64,11 @@ ActiveRecord::Schema.define(version: 2020_08_07_170248) do
     t.integer "prefecture_code", null: false
     t.integer "size_id", null: false
     t.integer "postage_days_id", null: false
+    t.bigint "seller_id", null: false
+    t.bigint "buyer_id"
     t.datetime "deal_done_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "seller_id", null: false
-    t.bigint "buyer_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"

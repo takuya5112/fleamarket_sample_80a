@@ -12,14 +12,14 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :prefecture_code, null: false
       t.integer :size_id, null: false, foreign_key: true
       t.integer :postage_days_id, null: false, foreign_key: true
-      t.bigint :seller, null: false, foreign_key: true
-      t.bigint :buyer, foreign_key: true
+      t.bigint :seller_id, null: false, foreign_key: true
+      t.bigint :buyer_id, foreign_key: true
       t.datetime :deal_done_date
 
       t.timestamps
     end
     add_index :items, :category_id
-    add_index :items, :seller
-    add_index :items, :buyer
+    add_index :items, :seller_id
+    add_index :items, :buyer_id
   end
 end

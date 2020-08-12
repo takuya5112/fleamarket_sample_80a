@@ -12,4 +12,7 @@ class ItemsController < ApplicationController
     @category_parents = Category.where(ancestry: nil)
   end
 
+  def buyers
+    
+  end
 end
