@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'items#index'
-  get "items/buyers", to: "items#buyers"
   resources :items do
     resources :comments
+    collection do
+      get "buyers"
+    end
   end
   resources :users
   resources :user_addresses
