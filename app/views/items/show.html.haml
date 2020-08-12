@@ -49,7 +49,7 @@
             %th カテゴリー
             %td
               %p= @item.category.root.name
-              -# %p= "> #{@item.category.parent.name}"
+              %p= "> #{@item.category.parent.name}"
               %p= ">> #{@item.category.name}"
           %tr.tree
             %th ブランド
