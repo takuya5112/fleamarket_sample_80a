@@ -43,10 +43,8 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|card_number|integer|null: false, unique: true|
-|expiration_year|integer|null: false|
-|expiration_month|integer|null: false|
-|security_code|integer|null: false|
+|payjp_customer_id|string|null: false, unique: true|
+|payjp_card_id|string|null: false, unique: true|
 ### Association
 - belongs_to :user
 
@@ -58,8 +56,6 @@ Things you may want to cover:
 |family_name|string|null: false|
 |first_name_kana|string|null: false|
 |family_name_kana|string|null: false|
-|birth_year|date|null: false|
-|birth_month|date|null: false|
 |birth_day|date|null: false|
 |introduction|text||
 |image|string||
@@ -79,7 +75,7 @@ Things you may want to cover:
 |city|string|null: false|
 |house_number|string|null: false|
 |building_name|string||
-|phone_number|integer|null: false, unique: true|
+|phone_number|string|unique: true|
 ### Association
 - belongs_to :user
 
@@ -94,7 +90,6 @@ Things you may want to cover:
 |condition_id|integer|null: false, foreign_key: true|
 |postage_burden_id|integer|null: false, foreign_key: true|
 |prefecture_code|integer|null: false, jp_prefecture|
-|size_id|integer|null: false, foreign_key: true|
 |postage_days_id|integer|null: false, foreign_key: true|
 |seller_id|integer|null: false, foreign_key: true|
 |buyer_id|integer|foreign_key: true|
@@ -106,7 +101,6 @@ Things you may want to cover:
 - belongs_to :brand
 - belongs_to_active_hash :condition, class_name: "ItemCondition"
 - belongs_to_active_hash :postage_burden
-- belongs_to_active_hash :size, class_name: "ItemSize"
 - belongs_to_active_hash :postage_days
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User"
@@ -143,4 +137,3 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :item
-
