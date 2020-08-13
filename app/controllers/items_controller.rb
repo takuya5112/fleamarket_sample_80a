@@ -15,4 +15,11 @@ class ItemsController < ApplicationController
   def buyers
     
   end
+
+  def destroy
+    @items = Item.find(params[:id])
+    @items.destroy
+    redirect_to  delete_done_items_path
+  end
+
 end
