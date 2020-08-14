@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
 
+  before_action :set_item, only: [:show, :destroy]
+
   def index
     @items = Item.all.order('id DESC').limit(10)
   end
 
   def show
-    @item = Item.find(params[:id])
   end
   
   def new
@@ -17,9 +18,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @items = Item.find(params[:id])
-    @items.destroy
+    @item.destroy
     redirect_to  delete_done_items_path
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end
