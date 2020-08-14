@@ -81,3 +81,5 @@ gem 'active_hash'
 gem 'jp_prefecture'
 gem 'fog-aws'
 gem 'rails-i18n'
+
+gem 'payjp'

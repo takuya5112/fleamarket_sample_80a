@@ -6,10 +6,19 @@
 @import "top-page";
 @import "display";
 @import "appBanner";
-@import "new";
+@import "items/new";
 @import "footer";
 @import "show";
 @import "modules/myPage";
 @import "modules/logout";
 @import "modules/creditNew";
+@import "done";
 
+
+@import "config/variables";
+@import "items/buyers";
+
+// ログイン、新規登録画面
+@import "view/index";
+@import "view/new";
+@import "view/edit";
