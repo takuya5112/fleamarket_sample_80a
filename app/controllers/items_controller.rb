@@ -26,6 +26,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def delete_done
+    
+  end
+
   def set_item
     @item = Item.find(params[:id])
   end
