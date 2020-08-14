@@ -1,7 +1,15 @@
 .items_new_page{
   background-color: silver;
   padding: 10px 0;
-  
+  .product_form__errors{
+  background-color: #FFEBE8;
+  color: #262626;
+  text-align: center;
+  border: 2px solid #990000;
+  padding: 12px;
+  font-weight: 850;
+  list-style: none;
+}
   form{
     margin: 0 auto;
     background-color: #ffffff;
@@ -9,12 +17,10 @@
     width: 100%;
     border-radius: 4px;
     padding: 32px 24px;
-    
     .form_section{
       border-bottom: solid 1px #999999;
       padding-top: 10px;
       padding-bottom: 10px;
-
       .form-group__require {
         margin: 0 0 0 8px;
         padding: 2px 4px;
@@ -46,17 +52,62 @@
         margin: 10px;
         font-size: 12px;
       }
-      #previews{
-        display: flex;
-        flex-wrap: wrap;
+      .clearfix{
+        #previews {
+          display: flex;
+          flex-wrap: wrap;
+          .upload-label {
+            display: flex;
+            background-color: #3CCACE;
+              border: dotted 4px silver;
+              border-radius: 20px;
+              position: relative;
+              cursor: pointer;
+            &_area {
+              height: 110px;
+              width: 0;
+            }  
+            .input-area {
+              height: 110px;
+              width: 100%;
+              .image_upload {
+                display: none;
+              }
+            }
+          }
+          .image-preview {
+            border: solid 3px #3CCACE;
+            border-radius: 10px;
+            padding: 2px;
+            margin-bottom: 2px;
+            &__wrapper {
+              .preview {
+                width: 100%;
+                height: 75px;
+              }
+            }
+            &_btn {
+              &_delete {
+                text-align: center;
+                border-radius: 16px;
+                background-color: gray;
+                color: #fff;
+                width: 65%;
+                margin: 0 auto ;
+                cursor: pointer;
+              }
+            }
+          }
         }
-        li.input{
+      }
+        li.input{   
+          list-style: none;
           width: 100%;
           height: 110px;
-          background-color: #3CCACE;
-          border: dotted 4px silver;
-          border-radius: 20px;
-          position: relative;
+        }
+        .upload-label_area {
+          width: 100%;
+          height: 100%;
         }
       }
     }
