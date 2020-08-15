@@ -23,7 +23,6 @@ $(function(){
 
       
       reader.onload = function(e){
-      console.log(preview)
         $(preview).find('.preview').attr('src', e.target.result);
       }
 
