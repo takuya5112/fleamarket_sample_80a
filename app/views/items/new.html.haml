@@ -74,8 +74,6 @@
           販売利益
           .right_bar_2
             %p
-        .product_form__purchase{hidden: ""}
-          = form.number_field :seller_id, value: User.find_by(id: 1).id
       .form_section.register_btns
         = form.submit "出品する",class:"exhibition-btn"
       .attentions
