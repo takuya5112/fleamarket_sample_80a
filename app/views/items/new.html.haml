@@ -2,14 +2,29 @@
 
 .items_new_page
   .items_register_form
-    = form_with local: true do |form|
+    = form_with model: @item, local: true  do |form|
+      .product_form
+        - if @item.errors.any?
+          .product_form__errors
+            %ul
+            - @item.errors.full_messages.each do |message|
+              %li= message
       .form_section.image_register
         = form.label '出品画像'
         %span.form-group__require 必須
         .image-attend クリックで最大10枚まで貼れます。
-        .clearfix
-          %ul#previews
-            %li.input
+        = form.fields_for :item_images do |image|
+          .clearfix
+            %ul#previews 
+              %li.input
+                %label.upload-label
+                  .upload-label_area
+                  .input-area
+                    = image.file_field :image, type: 'file', id: 'item_images_attributes_0_image', class: 'image_upload',style: 'display: none' 
+                
+        
+          
+                    
 
       .form_section.item_register
         = form.label '商品名'
@@ -25,24 +40,24 @@
                 = form.label 'カテゴリー'
                 %span.form-group__require 必須
               .status_register__status_category_group__category__choose
-                = form.collection_select :category_root_id, @category_parents, :id, :name,{include_blank: "---"}, class: "select-box__category", id: "category-root"
+                = form.collection_select :category_id, @category_parents, :id, :name,{include_blank: "---"}, class: "select-box__category", id: "category-root"
                 .status_register__status_category_group__category__choose__added#children_wrapper
                 .status_register__status_category_group__category__choose__added#grandchildren_wrapper
         = form.label "ブランド"
         = form.text_field :brand , placeholder: "例）シャネル"
         = form.label "商品の状態"
         %span.form-group__require 必須
-        = form.text_field :item_condition, placeholder: "選択してください"
+        = form.collection_select :condition_id, ItemCondition.all, :id, :condition, include_blank: '選択してください'
       .form_section.send_register
         = form.label '配送料の負担'
         %span.form-group__require 必須
-        = form.text_field :postage_payer, placeholder: "選択してください"
-        = form.label '配送元の地域'
+        = form.collection_select :postage_burden_id, PostageBurden.all,  :id, :burden, include_blank: '選択してください'
+        = form.label  '配送元の地域'
         %span.form-group__require 必須
-        = form.text_field :prefecture_code, placeholder: "選択してください"
-        = form.label '発送までの日数'
+        = form.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: '選択してください'
+        = form.label  '発送までの日数'
         %span.form-group__require 必須
-        = form.text_field :preparation_day, placeholder: "選択してください"
+        = form.collection_select :postage_days_id, PostageDays.all, :id, :day, include_blank: '選択してください'
       .form_section.value_register
         = form.label '販売価格'
         %span.form-group__require 必須
@@ -53,12 +68,14 @@
         .product_price-fee
           販売手数料(10%)
           .right_bar
+            %p
         
         .product_profit
           販売利益
-          = form.number_field :rieki, style: "display: none", id: "price"
           .right_bar_2
-
+            %p
+        .product_form__purchase{hidden: ""}
+          = form.number_field :seller_id, value: User.find_by(id: 1).id
       .form_section.register_btns
         = form.submit "出品する",class:"exhibition-btn"
       .attentions
