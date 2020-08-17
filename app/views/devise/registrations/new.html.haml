@@ -36,18 +36,18 @@
               %span.red 必須
             %ul.input__name
               %li
-                = f.text_field :fast_name, placeholder: "例)山田", class: "input-name"
+                = f.text_field :first_name, placeholder: "例)山田", class: "input-name"
               %li
-                = f.text_field :last_name, placeholder: "例)太朗", class: "input-name"
+                = f.text_field :family_name, placeholder: "例)太朗", class: "input-name"
           .form__input--name-katakana
             .form__title
               お名前カナ(全角)
               %span.red 必須
             %ul.input__name
               %li
-                = f.text_field :fast_name_reading, placeholder: "例)ヤマダ", class: "input-name"
+                = f.text_field :first_name_kana, placeholder: "例)ヤマダ", class: "input-name"
               %li
-                = f.text_field :last_name_reading, placeholder: "例)タロウ", class: "input-name"
+                = f.text_field :family_name_kana, placeholder: "例)タロウ", class: "input-name"
           .form__input--birth-date
             .form__title
               生年月日

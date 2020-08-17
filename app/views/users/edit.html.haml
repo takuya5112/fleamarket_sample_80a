@@ -2,4 +2,4 @@
 .LogoutScreen
   .LogoutScreen__content
     .LogoutButton 
-      %p ログアウト
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "mypage-wrapper__contents__right-logout__content__btn"

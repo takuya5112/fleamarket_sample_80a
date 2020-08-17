@@ -25,7 +25,7 @@
         %p クレジットカード登録
         = icon('fas', 'angle-right', class: "angle-icon")
       %li
-        %p ログアウト
+        = link_to "ログアウト", destroy_user_session_path, method: :delete
         = icon('fas', 'angle-right', class: "angle-icon")
   .MyPage__right
     .MyPage__todo
