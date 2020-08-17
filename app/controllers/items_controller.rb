@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     brand_name = params[:item][:brand_name]
     if brand_name == ""
+      brand_id = Brand.find_by(name: brand_name).id
     elsif Brand.where(name: brand_name).present?
       brand_id = Brand.find_by(name: brand_name).id
       @item.brand_id = brand_id
