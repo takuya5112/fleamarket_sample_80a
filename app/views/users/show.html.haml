@@ -33,8 +33,7 @@
     %h2 設定
     %ul.MyPage__setting
       %li
-        -# - if CreditCard.where(user_id: current_user.id).present?
-        - if true
+        - if CreditCard.where(user_id: current_user.id).present?
           = link_to "クレジットカード詳細・削除", edit_credit_card_path
           = icon('fas', 'angle-right', class: "angle-icon")
         - else
