@@ -1,5 +1,16 @@
-.page
+.main-header
   = render "layouts/header"
+  %nav.bread-crumbs
+    %ul
+      %li 
+        = link_to root_path do
+          furima
+        = icon('fas','angle-right')
+      %li 
+        - breadcrumb :users_new
+        = breadcrumbs separator: " &rsaquo; "
+
+.page
   .form
     .form__content
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
@@ -74,3 +85,4 @@
           -#   and
           -#   = link_to 'Terms of Service apply.','https://policies.google.com/terms'
     -# =render "layouts/footer"
+

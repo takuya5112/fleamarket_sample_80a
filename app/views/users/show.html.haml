@@ -1,4 +1,15 @@
-= render partial: 'layouts/header'
+.main-header
+  = render partial: 'layouts/header'
+  %nav.bread-crumbs
+    %ul
+      %li 
+        = link_to root_path do
+          furima
+        = icon('fas','angle-right')
+      %li 
+        - breadcrumb :mypage 
+        = breadcrumbs separator: " &rsaquo; "
+
 .MyPage
   .MyPage__left
     %h2 マイページ

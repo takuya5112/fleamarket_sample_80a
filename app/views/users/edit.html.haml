@@ -1,4 +1,15 @@
-= render partial: 'layouts/header'
+.main-header
+  = render partial: 'layouts/header'
+  %nav.bread-crumbs
+      %ul
+        %li 
+          = link_to root_path do
+            furima
+          = icon('fas','angle-right')
+        %li 
+          - breadcrumb :logout
+          = breadcrumbs separator: " &rsaquo; "
+
 .LogoutScreen
   .LogoutScreen__content
     .LogoutButton 
