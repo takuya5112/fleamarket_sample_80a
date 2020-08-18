@@ -30,7 +30,7 @@
           = link_to "クレジットカード登録", new_credit_card_path
           = icon('fas', 'angle-right', class: "angle-icon")
       %li
-        %p ログアウト
+        %p= link_to "ログアウト", destroy_user_session_path, method: :delete
         = icon('fas', 'angle-right', class: "angle-icon")
   .MyPage__right
     .MyPage__todo
