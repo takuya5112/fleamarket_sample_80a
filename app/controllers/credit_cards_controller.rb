@@ -1,16 +1,13 @@
 class CreditCardsController < ApplicationController
   require "payjp"
   before_action :set_payjp_api_key, only: [:edit, :create, :destroy]
+  before_action :set_credit_card_customer, only: [:edit, :destroy]
   protect_from_forgery except: :create
 
   def new 
   end
 
   def edit 
-    credit_card = CreditCard.find_by(user_id: current_user.id)
-
-    customer = Payjp::Customer.retrieve(credit_card.payjp_customer_id)
-    @card = customer.cards.retrieve(credit_card.payjp_card_id)
   end
 
   def create
@@ -26,21 +23,21 @@ class CreditCardsController < ApplicationController
     customer_id = customer.id
     card_id = card.id
 
-    CreditCard.create(user_id: current_user.id, payjp_customer_id: customer_id, payjp_card_id: card_id)
-
-    redirect_to user_path(current_user.id)
+    if CreditCard.create(user_id: current_user.id, payjp_customer_id: customer_id, payjp_card_id: card_id)
+      redirect_to user_path(current_user.id), notice: "クレジットカードを登録しました"
+    else
+      redirect_to new_credit_card_path, notice: "クレジットカードを登録できませんでした"
+    end
   end
 
   def destroy
-    credit_card = CreditCard.find_by(user_id: current_user.id)
+    @card.delete
 
-    customer = Payjp::Customer.retrieve(credit_card.payjp_customer_id)
-    card = customer.cards.retrieve(credit_card.payjp_card_id)
-    card.delete
-
-    credit_card.destroy
-
-    redirect_to user_path(current_user.id)
+    if @credit_card.destroy
+      redirect_to user_path(current_user.id), notice: "クレジットカードを削除しました"
+    else
+      redirect_to edit_credit_card_path, notice: "クレジットカードを削除できませんでした"
+    end
   end
 
   private
@@ -54,5 +51,10 @@ class CreditCardsController < ApplicationController
     Payjp.api_key = 'sk_test_631078351a3b43065f7af39e'
   end
 
+  def set_credit_card_customer
+    @credit_card = CreditCard.find_by(user_id: current_user.id)
+    customer = Payjp::Customer.retrieve(@credit_card.payjp_customer_id)
+    @card = customer.cards.retrieve(@credit_card.payjp_card_id)
+  end
 
 end
