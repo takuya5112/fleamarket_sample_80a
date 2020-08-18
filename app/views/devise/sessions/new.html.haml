@@ -1,5 +1,15 @@
-.page
+.main-header
   = render "layouts/header"
+  %nav.bread-crumbs
+    %ul
+      %li 
+        = link_to root_path do
+          furima
+        = icon('fas','angle-right')
+      %li 
+        - breadcrumb :login 
+        = breadcrumbs separator: " &rsaquo; "
+
   .body
     .content
       = form_with model: @user, url: user_session_path, local: true do |f|
@@ -19,4 +29,6 @@
               = f.submit "ログイン", class: "btn-login"
             .content__under__content--text
               = link_to 'パスワードをお忘れの方','#'
-    -# = render "layouts/footer"
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'
