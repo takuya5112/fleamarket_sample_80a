@@ -2,7 +2,7 @@
   = render "layouts/header"
   .body
     .content
-      = form_with model: @user, url: user_session_path, local: true do |f|
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .content__top
           .content__top--text
             アカウントをお持ちでない方はこちら
