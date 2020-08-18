@@ -3,7 +3,7 @@ $(function() {
   function createChildrenHTML(data) {
     let html = `<div class="status_register__status_category_group__category__choose1">
                   <i class="fas fa-chevron-down status_register__status_category_group__category__choose--arrow-down"></i>`
-    html += `<select class="select-box__category__child" id="category-child" name="category_child_id"><option value="">---</option>`
+    html += `<select class="select-box__category__child" id="category-child" name="item[category_child_id]"><option value="">---</option>`
 
     $.each(data, function(i, datum) {
       html += `<option value="${datum.id}">${datum.name}</option>`
@@ -17,7 +17,7 @@ $(function() {
   function createGrandchildrenHTML(data) {
     let html = `<div class="status_register__status_category_group__category__choose2">
                   <i class="fas fa-chevron-down status_register__status_category_group__category__choose--arrow-down"></i>`
-    html += `<select class="select-box__category__grandchild" id="category-grandchild" name="category_grandchild_id"><option value="">---</option>`
+    html += `<select class="select-box__category__grandchild" id="category-grandchild" name="item[category_id]"><option value="">---</option>`
 
     $.each(data, function(i, datum) {
       html += `<option value="${datum.id}">${datum.name}</option>`
