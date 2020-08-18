@@ -7,9 +7,7 @@ class CreditCardsController < ApplicationController
   end
 
   def edit 
-    # Devise未実装のため、current_userを使用できない。実装後に入れ替える。
-    credit_card = CreditCard.find(1)
-    # credit_card = CreditCard.find(current_user.id)
+    credit_card = CreditCard.find_by(user_id: current_user.id)
 
     customer = Payjp::Customer.retrieve(credit_card.payjp_customer_id)
     @card = customer.cards.retrieve(credit_card.payjp_card_id)
