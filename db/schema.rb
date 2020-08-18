@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_092801) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_brands_on_name", unique: true
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,7 +63,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_092801) do
     t.integer "condition_id", null: false
     t.integer "postage_burden_id", null: false
     t.integer "prefecture_code", null: false
-    t.integer "size_id", null: false
     t.integer "postage_days_id", null: false
     t.bigint "seller_id", null: false
     t.bigint "buyer_id"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_092801) do
     t.string "family_name", null: false
     t.string "first_name_kana", null: false
     t.string "family_name_kana", null: false
-    t.integer "postcode", limit: 1, null: false
+    t.string "postcode", limit: 7, null: false
     t.integer "prefecture_code", null: false
     t.string "city", null: false
     t.string "house_number", null: false
