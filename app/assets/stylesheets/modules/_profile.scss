@@ -1,0 +1,75 @@
+$color-item1: white;
+$color-item2: whitesmoke;
+$color-item3: turquoise;
+
+.sing-content {
+  box-sizing: border-box;
+  height: 100%;
+  
+  .profile-main  {
+    width: 100vw;
+    
+    &__content {
+      background-color:$color-item1;
+      width: 600px;
+      margin: 50px auto;
+      padding-bottom: 50px;
+      &__title {
+        font-size: 20px;
+        text-align: center;
+        border-bottom: 1px $color-item2 solid;
+        padding: 15px;
+        font-weight: bolder;
+      }
+      .profile-main__form {
+        background-color: $color-item1;
+        height: 100%;
+        padding-left: 160px;
+        
+  
+        .profile__form {
+         background-color: $color-item1;
+         width: 300px;
+         height: 100%;
+          
+          .profile-group {
+            font-size: 16px;
+            margin-top: 20px;
+            
+            &__input--left {
+              margin-bottom: 40px;
+              border-radius: 5px;
+              width: 130px;
+              height: 40px;
+            }
+            &__input--right {
+              margin-bottom: 40px;
+              margin-right: 20px;
+              border-radius: 5px;
+              width: 130px;
+              height: 40px;
+              float: right;
+            }
+            #profile_birth_day_1i,#profile_birth_day_2i,#profile_birth_day_3i{
+              margin-bottom: 40px;
+              border-radius: 5px;
+              width: 80px;
+              height: 40px;
+            }
+            &__require {
+            background-color: $color-item3;
+            border: solid 1px $color-item3;
+            color:  $color-item1;
+            }
+            .profile-btn {
+              width: 280px;
+              height: 40px;
+              background-color: $color-item3;
+              color:  $color-item1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
