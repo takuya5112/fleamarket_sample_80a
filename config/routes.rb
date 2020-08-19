@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
     member do
       get "buyers"
+      post "buy"
     end
   end
   resources :users

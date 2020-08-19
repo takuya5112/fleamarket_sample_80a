@@ -40,7 +40,7 @@
               売り切れました
           - elsif user_signed_in?
             - unless current_user.id == @item.seller_id
-              = link_to "#" do
+              = link_to buyers_item_path(@item.id) do
                 商品購入
           - else
             = link_to  new_user_session_path do

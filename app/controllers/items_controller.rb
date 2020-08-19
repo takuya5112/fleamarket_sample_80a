@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   require "payjp"
-  before_action :set_item, only: [:show, :destroy, :buyers]
-  before_action :set_payjp_api_key, only: [:buyers]
-  before_action :set_credit_card_customer, only: [:buyers]
+  before_action :set_item, only: [:show, :destroy, :buyers, :buy]
+  before_action :set_payjp_api_key, only: [:buyers, :buy]
+  before_action :set_credit_card_customer, only: [:buyers, :buy]
 
 
   def index
@@ -50,6 +50,22 @@ class ItemsController < ApplicationController
   def buyers
   end
 
+  def buy
+    price = @item.price
+
+    charge = Payjp::Charge.create(
+      :amount => price,
+      :customer => @customer.id,
+      :currency => 'jpy',
+    )
+
+    if charge.to_h.has_key?("error")
+      redirect_to buyers_item_path(@item.id), notice: "商品を購入できませんでした"
+    else
+      redirect_to root_path, notice: "商品を購入しました"
+    end
+  end
+
   def delete_done
   end
 
@@ -72,8 +88,8 @@ class ItemsController < ApplicationController
 
   def set_credit_card_customer
     @credit_card = CreditCard.find_by(user_id: current_user.id)
-    customer = Payjp::Customer.retrieve(@credit_card.payjp_customer_id)
-    @card = customer.cards.retrieve(@credit_card.payjp_card_id)
+    @customer = Payjp::Customer.retrieve(@credit_card.payjp_customer_id)
+    @card = @customer.cards.retrieve(@credit_card.payjp_card_id)
   end
 
 end
