@@ -59,7 +59,8 @@
               様
               
       .buy-content__main__submit
-        = f.submit '購入する', class: 'buy-button'
+        = link_to buy_item_path(@item.id), method: :post do
+          %button "購入する"
 
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
