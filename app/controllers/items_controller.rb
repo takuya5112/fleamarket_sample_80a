@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  require "payjp"
+  before_action :set_item, only: [:show, :destroy, :buyers]
+  before_action :set_payjp_api_key, only: [:buyers]
+  before_action :set_credit_card_customer, only: [:buyers]
 
-  before_action :set_item, only: [:show, :destroy]
 
   def index
     @items = Item.all.order('id DESC').limit(10)
@@ -35,10 +38,6 @@ class ItemsController < ApplicationController
       end
   end
 
-  def buyers
-    
-  end
-
   def destroy
     if @item.destroy
       redirect_to  delete_done_items_path
@@ -48,8 +47,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def buyers
+  end
+
   def delete_done
-    
   end
 
   private
@@ -60,9 +61,19 @@ class ItemsController < ApplicationController
     item_images_attributes: [:image, :_destroy, :id]).merge( seller_id: 1)
   end
 
-
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_payjp_api_key
+    # 後に環境変数にて設定予定。テスト用のSecretKeyのため、セキュリティ的には問題ない。
+    Payjp.api_key = 'sk_test_631078351a3b43065f7af39e'
+  end
+
+  def set_credit_card_customer
+    @credit_card = CreditCard.find_by(user_id: current_user.id)
+    customer = Payjp::Customer.retrieve(@credit_card.payjp_customer_id)
+    @card = customer.cards.retrieve(@credit_card.payjp_card_id)
   end
 
 end
