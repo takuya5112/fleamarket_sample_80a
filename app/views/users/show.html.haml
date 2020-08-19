@@ -15,7 +15,7 @@
     %h2 マイページ
     %ul.MyPage__list
       %li
-        %p 出品する
+        %p= link_to '出品する', new_item_path
         = icon('fas', 'angle-right', class: "angle-icon")
       %li
         %p 出品した商品
