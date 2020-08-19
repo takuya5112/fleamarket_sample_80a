@@ -70,7 +70,7 @@ Things you may want to cover:
 |family_name|string|null: false|
 |first_name_kana|string|null: false|
 |family_name_kana|string|null: false|
-|postcode|integer|null: false, limit: 7|
+|postcode|string|null: false, limit: 7|
 |prefecture_code|integer|null: false, jp_prefecture|
 |city|string|null: false|
 |house_number|string|null: false|

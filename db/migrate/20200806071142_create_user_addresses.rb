@@ -7,7 +7,7 @@ class CreateUserAddresses < ActiveRecord::Migration[6.0]
       t.string :family_name, null: false
       t.string :first_name_kana, null: false
       t.string :family_name_kana, null: false
-      t.integer :postcode, null: false, limit: 1
+      t.string :postcode, null: false, limit: 7
       t.integer :prefecture_code, null: false
       t.string :city, null: false
       t.string :house_number, null: false
