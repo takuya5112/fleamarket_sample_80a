@@ -10,36 +10,34 @@
 
       .buy-content__main__item
         .buy-image
-          = image_tag 'https://www.pakutaso.com/shared/img/thumb/isojinTSURUTAMA0252_TP_V.jpg', size: '200x150', class: 'buy-image__detail'
+          = image_tag @item.item_images.first.image.url, size: '200x150', class: 'buy-image__detail'
         .buy-details
           .buy-details__item-name
-            %span 商品名:　イソジン
-            
-            %p.buy-price
-              100円
-              %span.shopping-free (税込)送料込み
+            %span 
+            %span= "商品名: #{@item.name}"
+            %p.buy-price<>
+              = "#{@item.price}円 "
+              %span.shopping-free (税込)送料込み_(仮)
 
       .buy-content__main__price-table
         .buy-content__main__price-table__left
           お支払い金額
-        .buy-content__main__price-table__right
-          100円
-          %span.shopping-free (税込)送料込み
+        .buy-content__main__price-table__right<>
+          = "#{@item.price}円 " 
+          %span.shopping-free (税込)送料込み_(仮)
           
       .buy-content__main__user-info
         .buy-content__main__user-info__inner
           %h3 お支払い方法
           .inner-credit
             .inner-credit__brand
+              %p= "カードブランド名: #{@card.brand}"
               %figure
                 
-            .inner-credit__number
-              = "**** **** **** " 
+            .inner-credit__number= "**** **** **** #{@card.last4}"
             .inner-credit__expiration
-              .inner-credit__expiration__title
-                有効期限
-              .inner-credit__expiration__date
-                =  " / " 
+              .inner-credit__expiration__title<>有効期限
+              .inner-credit__expiration__date= "#{@card.exp_month}月 #{@card.exp_year}年"
 
         .buy-content__main__user-info__adress
           .buy-content__main__user-info__adress__inner

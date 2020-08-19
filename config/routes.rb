@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :items do
     resources :comments
     collection do
-      get "buyers"
       get "delete_done"
+    end
+    member do
+      get "buyers"
     end
   end
   resources :users
