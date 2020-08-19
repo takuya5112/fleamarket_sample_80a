@@ -29,7 +29,7 @@ $(function() {
   }
 
   // change root_category event
-  $("#category-root").on("change", function() {
+  $("#item_category_root_id").on("change", function() {
     let category_root = $(this).val();
     $("#children_wrapper").empty();
     $("#grandchildren_wrapper").empty();

@@ -51,7 +51,7 @@
                 = form.label 'カテゴリー'
                 %span.form-group__require 必須
               .status_register__status_category_group__category__choose
-                = form.collection_select :category_root_id, @category_parents, :id, :name, include_blank: "---", class: "select-box__category", id: "category-root"
+                = form.collection_select :category_root_id, @category_parents, :id, :name, include_blank: "---", class: "select-box__category"
                 .status_register__status_category_group__category__choose__added#children_wrapper
                 .status_register__status_category_group__category__choose__added#grandchildren_wrapper
         = form.label "ブランド"
