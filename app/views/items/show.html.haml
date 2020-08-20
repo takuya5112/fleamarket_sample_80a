@@ -76,7 +76,7 @@
           %tr.one
             %th 発送元の地域
             %td 
-              仮）北海道
+              = JpPrefecture::Prefecture.find(@item.prefecture_code).name
           %tr.one
             %th 発送日の目安
             %td 
