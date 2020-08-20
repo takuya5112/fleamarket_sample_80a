@@ -62,7 +62,11 @@ class ItemsController < ApplicationController
     if charge.to_h.has_key?("error")
       redirect_to buyers_item_path(@item.id), notice: "商品を購入できませんでした"
     else
-      redirect_to root_path, notice: "商品を購入しました"
+      if @item.update(buyer_id: current_user.id, deal_done_date: Time.current)
+        redirect_to root_path, notice: "商品を購入しました"
+      else 
+        redirect_to buyers_item_path(@item.id), notice: "商品を購入できませんでした"
+      end
     end
   end
 
