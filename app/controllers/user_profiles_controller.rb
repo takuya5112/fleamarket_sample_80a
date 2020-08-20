@@ -7,7 +7,7 @@ class UserProfilesController < ApplicationController
   def create
     @profile = UserProfile.new(profile_params)
     if @profile.save
-      redirect_to root_path
+      redirect_to new_user_address_path
     else
       render :new
     end
