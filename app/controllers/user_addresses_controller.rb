@@ -15,8 +15,6 @@ class UserAddressesController < ApplicationController
     end
   end
 
-  
-
   protected
 
   def address_params
