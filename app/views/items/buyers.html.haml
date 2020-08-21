@@ -1,6 +1,7 @@
 .header
   .header__logo
-    =image_tag("logo.png", size: "220x70")
+    = link_to root_path do
+      =image_tag("logo.png", size: "220x70")
     
 .buy-content
   .buy-content__main
@@ -15,15 +16,15 @@
           .buy-details__item-name
             %span= "商品名: #{@item.name}"
             %p.buy-price<>
-              = "#{@item.price}円 "
-              %span.shopping-free (税込)送料込み_(仮)
+              = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
+              %span.shopping-free (税込)送料込み
 
       .buy-content__main__price-table
         .buy-content__main__price-table__left
           お支払い金額
         .buy-content__main__price-table__right<>
-          = "#{@item.price}円 " 
-          %span.shopping-free (税込)送料込み_(仮)
+          = number_to_currency(@item.price,format: "%u%n",unit:"¥",precision: 0)
+          %span.shopping-free (税込)送料込み
           
       .buy-content__main__user-info
         .buy-content__main__user-info__inner
@@ -42,25 +43,25 @@
           .buy-content__main__user-info__adress__inner
             %h3 配送先
           .adress-info
-            住所
+            = "住所 #{@send.postcode}"
             %br
-            000-0000
+              = JpPrefecture::Prefecture.find(@send.prefecture_code).name
+            %br           
+              = @send.city
+              = @send.house_number
             %br
-            東京都〇〇区〇〇
-            %br
-            1-2-3
-            %br
-            テックキャンプ荘
+              = @send.building_name
             
             
             .adress-info__name
               氏名
-              テック
+              = @send.family_name
+              = @send.first_name
               様
               
       .buy-content__main__submit
         = link_to buy_item_path(@item.id), method: :post do
-          %button "購入する"
+          購入する
 
 = render partial: 'layouts/appBanner'
 = render partial: 'layouts/footer'
