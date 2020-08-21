@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @seller = @item.seller.nickname
   end
 
   def new
@@ -48,6 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def buyers
+    @send = UserAddress.where(user_id: current_user.id).first
   end
 
   def buy

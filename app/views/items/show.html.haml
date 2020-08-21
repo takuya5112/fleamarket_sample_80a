@@ -33,7 +33,10 @@
         %p
           = "#{@item.price}円" 
         .show-main__item-box__item-price__item-price-detail
-          (税込)送料込み
+          - if @item.postage_burden_id == 1
+            (税込)送料込
+          - elsif  @item.postage_burden_id == 2
+            (税込)送料別 
         .show-main__item-box__item-price__item-price-btn
           - if @item.buyer_id.present?
             = link_to root_path do
@@ -54,7 +57,7 @@
           %tr.one
             %th 出品者
             %td
-              = @item.name
+              = @seller
           %tr.two
             %th カテゴリー
             %td
