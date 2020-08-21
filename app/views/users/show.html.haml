@@ -46,7 +46,8 @@
     .MyPage__todo
       .User__info
         = image_tag('member_photo_noimage_thumb.png',class: 'User__info__image')
-        %p ユーザー名
+        %p
+          = current_user.nickname
       .Todo__list
         %h1 やることリスト
         %ul
