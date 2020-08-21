@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @seller = @item.seller.nickname
   end
 
   def new
