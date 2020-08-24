@@ -90,7 +90,7 @@
 
         .show-main__item-box__option-area__seller-area
           - if user_signed_in? && current_user.id == @item.seller_id
-            = link_to "#", class: "edit__btn" do
+            = link_to edit_item_path(@item), class: "edit__btn" do
               編集
             = link_to item_path(@item), method: :delete, class: "delete__btn" do
               削除

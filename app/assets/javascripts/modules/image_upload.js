@@ -1,6 +1,34 @@
 
 $(function(){
 
+  $ul = $('.previews_edit')
+    $li = $('.image_upload').parents('li');
+    $lis = $ul.find('.image-preview'); 
+    $inputs = $ul.find('.image_upload');
+    $li.removeClass('input');   
+    
+    let append_input = $(`<li class="input"><label class="upload-label"><div class="upload-label__area"><div class="input-area"><input class="hidden image_upload" type="file"></div></div></label></li>`)
+    
+    if($lis.length <= 4 ){
+      $ul.append(append_input)
+      $('#previews li:last-child').css({
+        'width': `calc(100% - (20% * ${$lis.length}))`
+      })
+    }
+    else if($lis.length == 5 ){
+      $ul.append(append_input)
+      $('#previews li:last-child').css({
+        'width': `100%`
+      })
+    }
+    
+    else if($lis.length <= 9 ){
+      $ul.append(append_input)
+      $('#previews li:last-child').css({
+        'width': `calc(100% - (20% * (${$lis.length} - 5 )))`
+      })
+    }
+
 
  $(document).on('click', '.image_upload', function() {
 
@@ -77,6 +105,12 @@ $(function(){
     $input = $ul.find('.input');
     $ul = $('#previews')
     $li = $(this).parents('.image-preview');
+
+    const check = $(this).parents(".image-preview_btn").data("index");
+    const box = $(`input[name= "item[item_images_attributes][${check}][_destroy]"]`);
+    $(box).trigger('click');
+      
+  
   
   
 
