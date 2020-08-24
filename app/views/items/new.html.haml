@@ -55,7 +55,7 @@
                 .status_register__status_category_group__category__choose__added#children_wrapper
                 .status_register__status_category_group__category__choose__added#grandchildren_wrapper
         = form.label "ブランド"
-        = form.text_field :brand , placeholder: "例）シャネル"
+        = form.text_field :brand , placeholder: "例）シャネル", value: @item.brand&.name
         = form.label "商品の状態"
         %span.form-group__require 必須
         = form.collection_select :condition_id, ItemCondition.all, :id, :condition, include_blank: '選択してください'
