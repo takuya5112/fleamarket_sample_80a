@@ -22,15 +22,16 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     brand_name = params[:item][:brand]
     @category_parents = Category.where(ancestry: nil)
-    if brand_name == ""
-    elsif Brand.where(name: brand_name).present?
-      brand_id = Brand.find_by(name: brand_name).id
-      @item.brand_id = brand_id
-    else
-      Brand.create(name: brand_name)
-      brand_id = Brand.find_by(name: brand_name).id
-      @item.brand_id = brand_id
-    end 
+    if brand_name 
+      if Brand.where(name: brand_name).present?
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      else
+        Brand.create(name: brand_name)
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      end 
+    end
       if @item.save
         redirect_to root_path
       else
@@ -46,15 +47,16 @@ class ItemsController < ApplicationController
   def update
     @category_parents = Category.where(ancestry: nil)
     brand_name = params[:item][:brand]
-    if brand_name == ""
-    elsif Brand.where(name: brand_name).present?
-      brand_id = Brand.find_by(name: brand_name).id
-      @item.brand_id = brand_id
-    else
-      Brand.create(name: brand_name)
-      brand_id = Brand.find_by(name: brand_name).id
-      @item.brand_id = brand_id
-    end 
+    if brand_name 
+      if Brand.where(name: brand_name).present?
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      else
+        Brand.create(name: brand_name)
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      end 
+    end
     if @item.update(item_params)
       redirect_to root_path
     else
