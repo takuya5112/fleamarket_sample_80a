@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   require "payjp"
-  before_action :set_item, only: [:show, :destroy, :buyers, :buy]
+  before_action :set_item, only: [:show, :destroy, :buyers, :buy, :edit, :update]
   before_action :set_payjp_api_key, only: [:buyers, :buy]
   before_action :set_credit_card_customer, only: [:buyers, :buy]
 
@@ -23,20 +23,46 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     brand_name = params[:item][:brand]
     @category_parents = Category.where(ancestry: nil)
-    if brand_name == ""
-    elsif Brand.where(name: brand_name).present?
-      brand_id = Brand.find_by(name: brand_name).id
-      @item.brand_id = brand_id
-    else
-      Brand.create(name: brand_name)
-      brand_id = Brand.find_by(name: brand_name).id
-      @item.brand_id = brand_id
-    end 
+    if brand_name 
+      if Brand.where(name: brand_name).present?
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      else
+        Brand.create(name: brand_name)
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      end 
+    end
       if @item.save
         redirect_to root_path
       else
         render :new
       end
+  end
+
+  def edit   
+    @category_parents = Category.where(ancestry: nil)
+    @item.item_images.build
+  end
+
+  def update
+    @category_parents = Category.where(ancestry: nil)
+    brand_name = params[:item][:brand]
+    if brand_name 
+      if Brand.where(name: brand_name).present?
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      else
+        Brand.create(name: brand_name)
+        brand_id = Brand.find_by(name: brand_name).id
+        @item.brand_id = brand_id
+      end 
+    end
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -79,8 +105,8 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :introduction, :price,  :condition_id, :postage_burden_id, :prefecture_code, 
-    :category_id, :postage_days_id, :seller_id, 
-    item_images_attributes: [:image, :_destroy, :id]).merge( seller_id: current_user.id)
+    :category_id, :postage_days_id, 
+     item_images_attributes: [:image, :_destroy, :id]).merge( seller_id: current_user.id)
   end
 
   def set_item

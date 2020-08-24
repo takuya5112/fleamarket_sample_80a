@@ -1,0 +1,94 @@
+.main-header
+  = render partial: 'layouts/header'
+  
+.items_new_page
+  .items_register_form
+    = form_with model: @item, local: true  do |form|
+      .product_form
+        - if @item.errors.any?
+          .product_form__errors
+            %ul
+            - @item.errors.full_messages.each do |message|
+              %li= message
+      .form_section.image_register
+        = form.label '出品画像'
+        %span.form-group__require 必須
+        .image-attend クリックで最大10枚まで貼れます。
+        .clearfix
+          %ul#previews.previews_edit
+            = form.fields_for :item_images do |image|
+              = image.file_field :image, type: 'file', class: 'image_upload', style: 'display: none',data: {index: image.index}
+              - if @item.item_images[image.index].image.present?
+                %li.image-preview
+                  .image-preview__wrapper
+                    =image_tag "#{@item.item_images[image.index].image}", class: 'preview'
+                  .image-preview_btn{data: {index: image.index}}
+                    .image-preview_btn_delete
+                      削除   
+                =image.check_box :_destroy,id: "delete-box", style: 'display: none'
+                     
+          
+      .form_section.item_register
+        = form.label '商品名'
+        %span.form-group__require 必須
+        = form.text_field :name, placeholder:"40文字まで", class:"item_name_form"
+        = form.label "商品の説明"
+        %span.form-group__require 必須
+        = form.text_area :introduction, class: "item_info_form"
+        .status_register
+          .status_register__status_category_group
+            .status_register__status_category_group__category
+              .status_register__status_category_group__category__register_title
+                = form.label 'カテゴリー'
+                %span.form-group__require 必須
+              .status_register__status_category_group__category__choose
+                = form.collection_select :category_root_id, Category.where(ancestry: nil), :id, :name, { selected: @item.category.root.name}, {class: "select-box__category"}
+
+                .status_register__status_category_group__category__choose1
+                  %i.fas.fa-chevron-down.status_register__status_category_group__category__choose--arrow-down
+
+                = form.collection_select :category_child_id, @item.category.root.children, :id, :name, selected: @item.category.parent.name, class: "select-box__category"
+
+                .status_register__status_category_group__category__choose1
+                  %i.fas.fa-chevron-down.status_register__status_category_group__category__choose--arrow-down
+
+                = form.collection_select :category_id, @item.category.siblings, :id, :name, include_blank: "---", class: "select-box__category"
+               
+        = form.label "ブランド"
+        = form.text_field :brand,placeholder: "例）シャネル", value: @item.brand.name
+        = form.label "商品の状態"
+        %span.form-group__require 必須
+        = form.collection_select :condition_id, ItemCondition.all, :id, :condition, include_blank: '選択してください'
+      .form_section.send_register
+        = form.label '配送料の負担'
+        %span.form-group__require 必須
+        = form.collection_select :postage_burden_id, PostageBurden.all,  :id, :burden, include_blank: '選択してください'
+        = form.label  '配送元の地域'
+        %span.form-group__require 必須
+        = form.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: '選択してください'
+        = form.label  '発送までの日数'
+        %span.form-group__require 必須
+        = form.collection_select :postage_days_id, PostageDays.all, :id, :day, include_blank: '選択してください'
+      .form_section.value_register
+        = form.label '販売価格'
+        %span.form-group__require 必須
+        .value_register_form
+          ¥
+          = form.number_field :price, class:"value_form"
+
+        .product_price-fee
+          販売手数料(10%)
+          .right_bar
+            %p
+        
+        .product_profit
+          販売利益
+          .right_bar_2
+            %p
+      .form_section.register_btns
+        = form.submit "編集完了",class:"exhibition-btn"
+      .attentions
+        禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
+
+
+= render "layouts/footer"
