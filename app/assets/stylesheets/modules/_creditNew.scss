@@ -32,6 +32,15 @@
       height: 550px;
       width: 700px;
       background-color: #fff;
+      &__card-remove {
+        margin: 0px 0px 0px 100px;
+      }
+      button{
+        background-color: #ea352d;
+        color: #fff;
+        border: 1px solid #ea352d;
+        height: 40px;
+      }
       span {
         font-size: 12px;
         background-color: red;
