@@ -1,0 +1,12 @@
+= render partial: 'layouts/header'
+
+
+.done#fullsize
+  .done__title
+    クレジットカードを登録してください
+  .done__backlink
+    = link_to 'マイページに移動', user_path(current_user.id), class: 'link'
+
+
+= render partial: 'layouts/appBanner'
+= render partial: 'layouts/footer'

@@ -75,6 +75,9 @@ class ItemsController < ApplicationController
   def delete_done
   end
 
+  def credit_card
+  end
+
   private
 
   def item_params
@@ -93,9 +96,13 @@ class ItemsController < ApplicationController
   end
 
   def set_credit_card_customer
-    @credit_card = CreditCard.find_by(user_id: current_user.id)
-    @customer = Payjp::Customer.retrieve(@credit_card.payjp_customer_id)
-    @card = @customer.cards.retrieve(@credit_card.payjp_card_id)
+    if @card.blank?
+      redirect_to credit_card_items_path
+    else
+      @credit_card = CreditCard.find_by(user_id: current_user.id)
+      @customer = Payjp::Customer.retrieve(@credit_card.payjp_customer_id)
+      @card = @customer.cards.retrieve(@credit_card.payjp_card_id)
+    end
   end
 
 end
