@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :comments
     collection do
       get "delete_done"
+      get "credit_card"
     end
     member do
       get "buyers"
