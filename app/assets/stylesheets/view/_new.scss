@@ -21,7 +21,6 @@
   //  フォーム
   .form {
     $backColor:#EEEEEE;
-    background-color: $backColor;
     height: auto;
     &__content {
       background-color: white;
@@ -146,47 +145,6 @@
           display: flex;
         }
        
-    }
-  }
-
-  // フッター
-  .footer {
-    $backColor:#EEEEEE;
-    background-color:$backColor;          
-    height: 220px;
-    padding: 30px;
-    color: black;
-    &__nav{
-      height: 30px;
-      width: 500px;
-      text-align: center;
-      margin: 0 auto;
-    }
-    a {
-      color: dimgray;
-      font-size: 12px;
-      text-decoration: none;
-    }
-    li {
-      display: inline;
-      margin-right: 1em;
-    }
-    .footer__logo{
-      margin: 0 auto;
-      margin-top: 30px;
-      text-align: center;
-      color: black;
-    }
-    .image-footer{
-      width: 150px;
-      color: gray;
-    }
-    .footer__text{
-      height: 15px;
-      width: 80px;
-      font-size: 12px;
-      color: dimgray;
-      margin: 0 auto;
     }
   }
 }
