@@ -115,6 +115,13 @@
     }
     .register_btns{
       padding: 30px;
+      text-align: center;
+      a{
+        background-color: #3CCACE;
+        color: #ffffff;
+        border-radius: 16px;
+        padding: 10px 160px;
+      }
       .exhibition-btn{
         background-color: #3CCACE;
         color: #ffffff;
