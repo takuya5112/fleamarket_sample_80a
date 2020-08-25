@@ -42,17 +42,17 @@
                 = form.label 'カテゴリー'
                 %span.form-group__require 必須
               .status_register__status_category_group__category__choose
-                = form.collection_select :category_root_id, Category.where(ancestry: nil), :id, :name, { selected: @item.category.root.name}, {class: "select-box__category"}
+                = form.collection_select :category_root_id,  Category.where(ancestry: nil), :id, :name, { selected: @item.category.root.id}, {class: "select-box__category"}
 
-                .status_register__status_category_group__category__choose1
+                .status_register__status_category_group__category__choose1#children_wrapper
+                  %i.fas.fa-chevron-down.status_register__status_category_group__category__choose--arrow-down
+  
+                  = form.collection_select :category_child_id, @item.category.root.children, :id, :name, {selected: @item.category.parent_id}, {class: "select-box__category"}
+              
+                .status_register__status_category_group__category__choose1#grandchildren_wrapper
                   %i.fas.fa-chevron-down.status_register__status_category_group__category__choose--arrow-down
 
-                = form.collection_select :category_child_id, @item.category.root.children, :id, :name, selected: @item.category.parent.name, class: "select-box__category"
-
-                .status_register__status_category_group__category__choose1
-                  %i.fas.fa-chevron-down.status_register__status_category_group__category__choose--arrow-down
-
-                = form.collection_select :category_id, @item.category.siblings, :id, :name, include_blank: "---", class: "select-box__category"
+                  = form.collection_select :category_id, @item.category.siblings, :id, :name, include_blank: "---", class: "select-box__category"
                
         = form.label "ブランド"
         = form.text_field :brand,placeholder: "例）シャネル", value: @item.brand.name
