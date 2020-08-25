@@ -120,8 +120,7 @@ class ItemsController < ApplicationController
   end
 
   def set_payjp_api_key
-    # 後に環境変数にて設定予定。テスト用のSecretKeyのため、セキュリティ的には問題ない。
-    Payjp.api_key = 'sk_test_631078351a3b43065f7af39e'
+    Payjp.api_key =  ENV["PAYJP_ACCESS_KEY"]
   end
 
   def set_credit_card_customer
