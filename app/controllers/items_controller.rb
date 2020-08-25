@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @category_parents = Category.where(ancestry: nil)
-    @item.item_images.build
+    @item.item_images.new
   end
 
   def create
@@ -31,12 +31,15 @@ class ItemsController < ApplicationController
         Brand.create(name: brand_name)
         brand_id = Brand.find_by(name: brand_name).id
         @item.brand_id = brand_id
-      end 
+      end
     end
       if @item.save
         redirect_to root_path
       else
+        @item.item_images = []
+        @item.item_images.new
         render :new
+       
       end
   end
 
